@@ -12,13 +12,23 @@ class WelcomeViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
 
         titleLabel.text = ""
         var charIndex = 0
-        let titleText = "⚡️FlashChat"
+        let titleText = K.appName
         for letter in titleText {
             Timer.scheduledTimer(withTimeInterval: TimeInterval(0.1 * Float(charIndex)), repeats: false) { (timer) in
                 self.titleLabel.text?.append(letter)
